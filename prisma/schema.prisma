@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String      @id @default(cuid())
+  email         String      @unique
+  passwordHash  String?
+  role          String      // DEPARTMENT | STARTUP | EVALUATOR | ADMIN
+  verified      Boolean     @default(false)
+  department    Department?
+  startup       Startup?
+  createdAt     DateTime    @default(now())
+}
+
+model Department {
+  id            String        @id @default(cuid())
+  userId        String        @unique
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String
+  ministry      String
+  jurisdiction  String
+  requirements  Requirement[]
+}
+
+model Startup {
+  id              String      @id @default(cuid())
+  userId          String      @unique
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name            String
+  sector          String
+  dpiitNumber     String?
+  foundedYear     Int
+  description     String
+  techStack       String      // Stringified JSON array
+  certifications  String      // Stringified JSON array
+  pastDeployments String      // Stringified JSON
+  pricingModel    String
+  makeInIndia     Boolean     @default(false)
+  proposals       Proposal[]
+}
+
+model Requirement {
+  id                 String       @id @default(cuid())
+  departmentId       String
+  department         Department   @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  rawProblem         String
+  structured         String       // Stringified JSON
+  budgetBand         String
+  location           String
+  eligibility        String       // Stringified JSON
+  evaluationCriteria String       // Stringified JSON
+  status             String       @default("OPEN") // OPEN | SCREENING | PILOTING | PROCURED | CLOSED
+  proposals          Proposal[]
+  graphNodes         GraphNode[]
+  createdAt          DateTime     @default(now())
+}
+
+model Proposal {
+  id               String   @id @default(cuid())
+  requirementId    String
+  requirement      Requirement @relation(fields: [requirementId], references: [id], onDelete: Cascade)
+  startupId        String
+  startup          Startup  @relation(fields: [startupId], references: [id], onDelete: Cascade)
+  pitch            String
+  readinessScore   String   // Stringified JSON
+  matchExplanation String   // Stringified JSON
+  opportunityScore Float?
+  aiEvaluation     String?  // Stringified JSON
+  status           String   @default("SUBMITTED") // SUBMITTED | SCREENED | SHORTLISTED | REJECTED | PILOTING | SCALED
+  pilot            Pilot?
+}
+
+model Pilot {
+  id                    String      @id @default(cuid())
+  proposalId            String      @unique
+  proposal              Proposal    @relation(fields: [proposalId], references: [id], onDelete: Cascade)
+  scope                 String
+  claimedMetrics        String      // Stringified JSON
+  measuredMetrics       String      // Stringified JSON
+  milestones            Milestone[]
+  independentValidation String?     // Stringified JSON
+  scaleDecision         String?     // Stringified JSON
+}
+
+model Milestone {
+  id        String   @id @default(cuid())
+  pilotId   String
+  pilot     Pilot    @relation(fields: [pilotId], references: [id], onDelete: Cascade)
+  title     String
+  dueDate   DateTime
+  amount    Float
+  status    String   @default("PENDING") // PENDING | SUBMITTED | VALIDATED | PAID
+}
+
+model GraphNode {
+  id            String      @id @default(cuid())
+  requirementId String?
+  requirement   Requirement? @relation(fields: [requirementId], references: [id], onDelete: SetNull)
+  type          String      // "problem" | "capability" | "compliance" | "deployment" | "startup"
+  label         String
+  edgesFrom     GraphEdge[] @relation("from")
+  edgesTo       GraphEdge[] @relation("to")
+}
+
+model GraphEdge {
+  id       String    @id @default(cuid())
+  fromId   String
+  toId     String
+  from     GraphNode @relation("from", fields: [fromId], references: [id])
+  to       GraphNode @relation("to", fields: [toId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
