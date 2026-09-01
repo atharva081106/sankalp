@@ -67,14 +67,17 @@ export function Chatbot() {
       {isOpen && (
         <div className="fixed bottom-6 right-6 z-50 w-[350px] md:w-[400px] h-[500px] max-h-[80vh] flex flex-col bg-transparent backdrop-blur-xl border-4 border-foreground shadow-[8px_8px_0_0_#DFE104]">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b-4 border-foreground bg-foreground/90 backdrop-blur-sm text-background">
+          <div className="flex items-center justify-between p-4 border-b-4 border-foreground bg-background/90 backdrop-blur-md text-foreground">
             <div>
-              <h3 className="font-heading font-black text-xl uppercase tracking-widest leading-none">Sankalp AI</h3>
+              <h3 className="font-heading font-black text-xl uppercase tracking-widest leading-none flex items-center gap-2">
+                <Bot className="w-5 h-5 text-accent" />
+                Sankalp AI
+              </h3>
               <p className="font-mono text-[10px] text-accent mt-1">NODE: ACTIVE // ASSISTANT</p>
             </div>
             <button 
               onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-accent hover:text-foreground transition-colors"
+              className="p-1 hover:bg-accent hover:text-black transition-colors"
             >
               <X className="w-6 h-6" strokeWidth={3} />
             </button>
