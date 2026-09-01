@@ -108,15 +108,17 @@ export default function LoginPage() {
           <Button 
             type="button" 
             variant="outline"
-            onClick={() => {
-              const emailInput = document.getElementById('email') as HTMLInputElement
-              const passwordInput = document.getElementById('password') as HTMLInputElement
-              if (emailInput && passwordInput) {
-                emailInput.value = 'urban@gov.in'
-                passwordInput.value = 'password'
-                const form = emailInput.closest('form')
-                if (form) form.requestSubmit()
-              }
+            onClick={async () => {
+              setLoading(true)
+              try {
+                const res = await signIn("credentials", {
+                  email: "urban@gov.in",
+                  password: "password",
+                  redirect: false
+                })
+                if (res?.error) setError("INVALID CREDENTIALS")
+                else { router.push("/dashboard"); router.refresh() }
+              } finally { setLoading(false) }
             }}
             className="rounded-none border-2 border-foreground bg-background text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors shadow-[2px_2px_0_0_#DFE104]"
           >
@@ -125,15 +127,17 @@ export default function LoginPage() {
           <Button 
             type="button"
             variant="outline"
-            onClick={() => {
-              const emailInput = document.getElementById('email') as HTMLInputElement
-              const passwordInput = document.getElementById('password') as HTMLInputElement
-              if (emailInput && passwordInput) {
-                emailInput.value = 'founder@urbantech.in'
-                passwordInput.value = 'password'
-                const form = emailInput.closest('form')
-                if (form) form.requestSubmit()
-              }
+            onClick={async () => {
+              setLoading(true)
+              try {
+                const res = await signIn("credentials", {
+                  email: "founder@urbantech.in",
+                  password: "password",
+                  redirect: false
+                })
+                if (res?.error) setError("INVALID CREDENTIALS")
+                else { router.push("/dashboard"); router.refresh() }
+              } finally { setLoading(false) }
             }}
             className="rounded-none border-2 border-foreground bg-background text-foreground hover:bg-accent hover:text-foreground hover:border-accent text-xs py-4 uppercase font-bold tracking-widest transition-colors shadow-[2px_2px_0_0_#000]"
           >
@@ -142,15 +146,17 @@ export default function LoginPage() {
           <Button 
             type="button"
             variant="outline"
-            onClick={() => {
-              const emailInput = document.getElementById('email') as HTMLInputElement
-              const passwordInput = document.getElementById('password') as HTMLInputElement
-              if (emailInput && passwordInput) {
-                emailInput.value = 'evaluator@sankalp.gov.in'
-                passwordInput.value = 'password'
-                const form = emailInput.closest('form')
-                if (form) form.requestSubmit()
-              }
+            onClick={async () => {
+              setLoading(true)
+              try {
+                const res = await signIn("credentials", {
+                  email: "evaluator@sankalp.gov.in",
+                  password: "password",
+                  redirect: false
+                })
+                if (res?.error) setError("INVALID CREDENTIALS")
+                else { router.push("/dashboard"); router.refresh() }
+              } finally { setLoading(false) }
             }}
             className="rounded-none border-2 border-foreground bg-accent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors shadow-[2px_2px_0_0_#000]"
           >

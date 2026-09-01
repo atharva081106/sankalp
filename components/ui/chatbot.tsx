@@ -65,7 +65,7 @@ export function Chatbot() {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[350px] md:w-[400px] h-[500px] max-h-[80vh] flex flex-col bg-background border-4 border-foreground shadow-[8px_8px_0_0_#DFE104]">
+        <div className="fixed bottom-6 right-6 z-50 w-[350px] md:w-[400px] h-[500px] max-h-[80vh] flex flex-col bg-background/80 backdrop-blur-md border-4 border-foreground shadow-[8px_8px_0_0_#DFE104]">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b-4 border-foreground bg-foreground text-background">
             <div>
@@ -114,7 +114,7 @@ export function Chatbot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t-4 border-foreground bg-muted/10">
+          <div className="p-4 border-t-4 border-foreground bg-background/50">
             <form onSubmit={handleSubmit} className="flex gap-2">
               <input
                 type="text"

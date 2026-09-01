@@ -2,8 +2,21 @@ import { prisma } from "@/lib/prisma"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
-export default async function RequirementsBrowsePage() {
+interface Props {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default async function RequirementsBrowsePage({ searchParams }: Props) {
+  const query = typeof searchParams.q === 'string' ? searchParams.q : undefined
+
   const requirements = await prisma.requirement.findMany({
+    where: query ? {
+      OR: [
+        { rawProblem: { contains: query, mode: 'insensitive' } },
+        { department: { name: { contains: query, mode: 'insensitive' } } },
+        { location: { contains: query, mode: 'insensitive' } }
+      ]
+    } : undefined,
     include: {
       department: true,
       _count: { select: { proposals: true } }
@@ -19,7 +32,7 @@ export default async function RequirementsBrowsePage() {
             Open <span className="text-accent">Requirements</span>
           </h1>
           <p className="text-xl font-mono uppercase mt-2 opacity-80 max-w-2xl">
-            Live procurement challenges from verified government departments.
+            {query ? `Search results for "${query}"` : "Live procurement challenges from verified government departments."}
           </p>
         </div>
         <Button 

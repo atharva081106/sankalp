@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ArrowRight, Search, Sprout, Car, Droplets, HeartPulse, Brain, Wifi, Building2, ShieldCheck } from "lucide-react"
 import { Marquee } from "@/components/ui/marquee"
@@ -91,6 +92,8 @@ interface LandingClientProps {
 }
 
 export default function LandingClient({ stats }: LandingClientProps) {
+  const router = useRouter()
+  const [searchQuery, setSearchQuery] = useState("")
   const [founderIdx, setFounderIdx] = useState(0)
 
   useEffect(() => {
@@ -128,17 +131,29 @@ export default function LandingClient({ stats }: LandingClientProps) {
           </Link>
 
           {/* Search */}
-          <div className="flex-1 hidden md:flex items-center border-2 border-border bg-background max-w-xl">
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault()
+              if (searchQuery.trim()) {
+                router.push(`/requirements?q=${encodeURIComponent(searchQuery.trim())}`)
+              } else {
+                router.push('/requirements')
+              }
+            }}
+            className="flex-1 hidden md:flex items-center border-2 border-border bg-background max-w-xl"
+          >
             <Search className="ml-3 w-4 h-4 text-muted-foreground shrink-0" />
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search challenges, departments, pilots..."
               className="flex-1 bg-transparent px-3 py-2.5 text-sm font-mono uppercase text-foreground placeholder:text-muted-foreground focus:outline-none"
             />
-            <button className="bg-accent text-foreground font-mono font-black text-xs uppercase px-4 py-2.5 hover:bg-foreground hover:text-background transition-colors">
+            <button type="submit" className="bg-accent text-foreground font-mono font-black text-xs uppercase px-4 py-2.5 hover:bg-foreground hover:text-background transition-colors">
               Search
             </button>
-          </div>
+          </form>
 
           {/* Right actions */}
           <div className="flex items-center gap-3 ml-auto shrink-0">

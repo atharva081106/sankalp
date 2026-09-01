@@ -61,12 +61,16 @@ export default function TemplatesLibrary() {
                   </pre>
                   
                   <div className="mt-8 pt-6 border-t-2 border-border flex flex-wrap gap-4">
-                    <Button variant="default">
-                      <Download className="mr-2" /> Download PDF
-                    </Button>
-                    <Button variant="outline">
-                      <Download className="mr-2" /> Download DOCX
-                    </Button>
+                    <a href="/templates/proposal_template.md" download>
+                      <Button variant="default">
+                        <Download className="mr-2" /> Download Markdown
+                      </Button>
+                    </a>
+                    <a href="/templates/challenge_template.csv" download>
+                      <Button variant="outline">
+                        <Download className="mr-2" /> Download CSV
+                      </Button>
+                    </a>
                   </div>
                 </div>
               </AccordionContent>
