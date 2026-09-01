@@ -105,60 +105,54 @@ export default function LoginPage() {
       <div className="mt-8 p-4 border-2 border-dashed border-muted-foreground max-w-md w-full">
         <p className="font-mono text-sm font-bold mb-4 uppercase text-center text-muted-foreground">Demo Accounts</p>
         <div className="flex flex-col gap-3">
-          <Button 
-            type="button" 
-            onClick={async () => {
-              setLoading(true)
-              try {
-                const res = await signIn("credentials", {
-                  email: "urban@gov.in",
-                  password: "password",
-                  redirect: false
-                })
-                if (res?.error) setError("INVALID CREDENTIALS")
-                else { router.push("/dashboard"); router.refresh() }
-              } finally { setLoading(false) }
-            }}
-            className="rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors"
-          >
-            🏛️ Login as Dept (urban@gov.in)
-          </Button>
-          <Button 
+          <button
             type="button"
+            disabled={loading}
             onClick={async () => {
               setLoading(true)
               try {
-                const res = await signIn("credentials", {
-                  email: "founder@urbantech.in",
-                  password: "password",
-                  redirect: false
-                })
+                const res = await signIn("credentials", { email: "urban@gov.in", password: "password", redirect: false })
                 if (res?.error) setError("INVALID CREDENTIALS")
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
             }}
-            className="rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors"
+            className="w-full rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors py-3 px-4 text-left disabled:opacity-50"
           >
-            🚀 Login as Startup (founder@urbantech.in)
-          </Button>
-          <Button 
+            <span className="block font-mono font-black text-xs uppercase tracking-widest">🏛️ Government Dept</span>
+            <span className="block font-mono text-[10px] opacity-60 mt-0.5">urban@gov.in</span>
+          </button>
+          <button
             type="button"
+            disabled={loading}
             onClick={async () => {
               setLoading(true)
               try {
-                const res = await signIn("credentials", {
-                  email: "evaluator@sankalp.gov.in",
-                  password: "password",
-                  redirect: false
-                })
+                const res = await signIn("credentials", { email: "founder@urbantech.in", password: "password", redirect: false })
                 if (res?.error) setError("INVALID CREDENTIALS")
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
             }}
-            className="rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors"
+            className="w-full rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors py-3 px-4 text-left disabled:opacity-50"
           >
-            👨‍⚖️ Login as Evaluator (evaluator@sankalp.gov.in)
-          </Button>
+            <span className="block font-mono font-black text-xs uppercase tracking-widest">🚀 Startup Founder</span>
+            <span className="block font-mono text-[10px] opacity-60 mt-0.5">founder@urbantech.in</span>
+          </button>
+          <button
+            type="button"
+            disabled={loading}
+            onClick={async () => {
+              setLoading(true)
+              try {
+                const res = await signIn("credentials", { email: "evaluator@sankalp.gov.in", password: "password", redirect: false })
+                if (res?.error) setError("INVALID CREDENTIALS")
+                else { router.push("/dashboard"); router.refresh() }
+              } finally { setLoading(false) }
+            }}
+            className="w-full rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors py-3 px-4 text-left disabled:opacity-50"
+          >
+            <span className="block font-mono font-black text-xs uppercase tracking-widest">👨‍⚖️ Evaluator</span>
+            <span className="block font-mono text-[10px] opacity-60 mt-0.5">evaluator@sankalp.gov.in</span>
+          </button>
         </div>
       </div>
     </div>
