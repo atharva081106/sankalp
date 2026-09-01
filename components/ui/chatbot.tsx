@@ -65,9 +65,9 @@ export function Chatbot() {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[350px] md:w-[400px] h-[500px] max-h-[80vh] flex flex-col bg-background/80 backdrop-blur-md border-4 border-foreground shadow-[8px_8px_0_0_#DFE104]">
+        <div className="fixed bottom-6 right-6 z-50 w-[350px] md:w-[400px] h-[500px] max-h-[80vh] flex flex-col bg-transparent backdrop-blur-xl border-4 border-foreground shadow-[8px_8px_0_0_#DFE104]">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b-4 border-foreground bg-foreground text-background">
+          <div className="flex items-center justify-between p-4 border-b-4 border-foreground bg-foreground/90 backdrop-blur-sm text-background">
             <div>
               <h3 className="font-heading font-black text-xl uppercase tracking-widest leading-none">Sankalp AI</h3>
               <p className="font-mono text-[10px] text-accent mt-1">NODE: ACTIVE // ASSISTANT</p>
@@ -93,8 +93,8 @@ export function Chatbot() {
                 <div 
                   className={`p-3 max-w-[85%] text-sm leading-relaxed border-2 border-foreground ${
                     m.role === 'user' 
-                      ? 'bg-accent text-foreground shadow-[4px_4px_0_0_#000]' 
-                      : 'bg-muted/30 text-foreground'
+                      ? 'bg-accent/80 backdrop-blur-sm text-foreground shadow-[4px_4px_0_0_#000]' 
+                      : 'bg-background/30 backdrop-blur-sm text-foreground'
                   }`}
                 >
                   {m.content}
@@ -104,7 +104,7 @@ export function Chatbot() {
             {isLoading && (
               <div className="flex flex-col items-start">
                  <span className="text-[10px] font-bold uppercase mb-1 opacity-50">SYS</span>
-                 <div className="p-3 border-2 border-foreground bg-muted/30 flex items-center gap-2">
+                 <div className="p-3 border-2 border-foreground bg-background/30 backdrop-blur-sm flex items-center gap-2">
                    <Loader2 className="w-4 h-4 animate-spin" />
                    <span className="text-xs uppercase font-bold">Processing...</span>
                  </div>
@@ -114,19 +114,19 @@ export function Chatbot() {
           </div>
 
           {/* Input */}
-          <div className="p-4 border-t-4 border-foreground bg-background/50">
+          <div className="p-4 border-t-4 border-foreground bg-background/20 backdrop-blur-sm">
             <form onSubmit={handleSubmit} className="flex gap-2">
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="INPUT COMMAND..."
-                className="flex-1 bg-background border-2 border-foreground p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                className="flex-1 bg-transparent border-2 border-foreground p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-accent placeholder:text-foreground/50"
               />
               <button
                 type="submit"
                 disabled={isLoading || !input.trim()}
-                className="p-3 bg-foreground text-background hover:bg-accent hover:text-foreground border-2 border-foreground transition-colors disabled:opacity-50 flex items-center justify-center"
+                className="p-3 bg-foreground/80 backdrop-blur-sm text-background hover:bg-accent hover:text-foreground border-2 border-foreground transition-colors disabled:opacity-50 flex items-center justify-center"
               >
                 <Send className="w-5 h-5" />
               </button>

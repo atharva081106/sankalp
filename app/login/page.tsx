@@ -102,12 +102,11 @@ export default function LoginPage() {
       </div>
       
       {/* Demo helper */}
-      <div className="mt-8 p-4 border-2 border-dashed border-muted-foreground max-w-md w-full bg-muted/20">
+      <div className="mt-8 p-4 border-2 border-dashed border-muted-foreground max-w-md w-full">
         <p className="font-mono text-sm font-bold mb-4 uppercase text-center text-muted-foreground">Demo Accounts</p>
         <div className="flex flex-col gap-3">
           <Button 
             type="button" 
-            variant="outline"
             onClick={async () => {
               setLoading(true)
               try {
@@ -120,13 +119,12 @@ export default function LoginPage() {
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
             }}
-            className="rounded-none border-2 border-foreground bg-background text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors shadow-[2px_2px_0_0_#DFE104]"
+            className="rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors"
           >
-            Login as Dept (urban@gov.in)
+            🏛️ Login as Dept (urban@gov.in)
           </Button>
           <Button 
             type="button"
-            variant="outline"
             onClick={async () => {
               setLoading(true)
               try {
@@ -139,13 +137,12 @@ export default function LoginPage() {
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
             }}
-            className="rounded-none border-2 border-foreground bg-background text-foreground hover:bg-accent hover:text-foreground hover:border-accent text-xs py-4 uppercase font-bold tracking-widest transition-colors shadow-[2px_2px_0_0_#000]"
+            className="rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors"
           >
-            Login as Startup (founder@urbantech.in)
+            🚀 Login as Startup (founder@urbantech.in)
           </Button>
           <Button 
             type="button"
-            variant="outline"
             onClick={async () => {
               setLoading(true)
               try {
@@ -158,9 +155,9 @@ export default function LoginPage() {
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
             }}
-            className="rounded-none border-2 border-foreground bg-accent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors shadow-[2px_2px_0_0_#000]"
+            className="rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background text-xs py-4 uppercase font-bold tracking-widest transition-colors"
           >
-            Login as Evaluator (evaluator@sankalp.gov.in)
+            👨‍⚖️ Login as Evaluator (evaluator@sankalp.gov.in)
           </Button>
         </div>
       </div>
