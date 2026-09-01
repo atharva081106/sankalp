@@ -111,7 +111,7 @@ export default function LoginPage() {
             onClick={async () => {
               setLoading(true)
               try {
-                const res = await signIn("credentials", { email: "urban@gov.in", password: "password", redirect: false })
+                const res = await signIn("credentials", { email: "head@ministryofurbandev.gov.in", password: "password123", redirect: false })
                 if (res?.error) setError("INVALID CREDENTIALS")
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
@@ -119,7 +119,7 @@ export default function LoginPage() {
             className="w-full rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors py-3 px-4 text-left disabled:opacity-50"
           >
             <span className="block font-mono font-black text-xs uppercase tracking-widest">🏛️ Government Dept</span>
-            <span className="block font-mono text-[10px] opacity-60 mt-0.5">urban@gov.in</span>
+            <span className="block font-mono text-[10px] opacity-60 mt-0.5">head@ministryofurbandev.gov.in</span>
           </button>
           <button
             type="button"
@@ -127,7 +127,7 @@ export default function LoginPage() {
             onClick={async () => {
               setLoading(true)
               try {
-                const res = await signIn("credentials", { email: "founder@urbantech.in", password: "password", redirect: false })
+                const res = await signIn("credentials", { email: "deepinder@zomato.com", password: "password123", redirect: false })
                 if (res?.error) setError("INVALID CREDENTIALS")
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
@@ -135,7 +135,7 @@ export default function LoginPage() {
             className="w-full rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors py-3 px-4 text-left disabled:opacity-50"
           >
             <span className="block font-mono font-black text-xs uppercase tracking-widest">🚀 Startup Founder</span>
-            <span className="block font-mono text-[10px] opacity-60 mt-0.5">founder@urbantech.in</span>
+            <span className="block font-mono text-[10px] opacity-60 mt-0.5">deepinder@zomato.com</span>
           </button>
           <button
             type="button"
@@ -143,7 +143,7 @@ export default function LoginPage() {
             onClick={async () => {
               setLoading(true)
               try {
-                const res = await signIn("credentials", { email: "evaluator@sankalp.gov.in", password: "password", redirect: false })
+                const res = await signIn("credentials", { email: "evaluator@gov.in", password: "password123", redirect: false })
                 if (res?.error) setError("INVALID CREDENTIALS")
                 else { router.push("/dashboard"); router.refresh() }
               } finally { setLoading(false) }
@@ -151,7 +151,7 @@ export default function LoginPage() {
             className="w-full rounded-none border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background transition-colors py-3 px-4 text-left disabled:opacity-50"
           >
             <span className="block font-mono font-black text-xs uppercase tracking-widest">👨‍⚖️ Evaluator</span>
-            <span className="block font-mono text-[10px] opacity-60 mt-0.5">evaluator@sankalp.gov.in</span>
+            <span className="block font-mono text-[10px] opacity-60 mt-0.5">evaluator@gov.in</span>
           </button>
         </div>
       </div>
